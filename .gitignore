@@ -12,5 +12,7 @@
 /captures
 .externalNativeBuild
 .cxx
+.claude
+.idea
 todo.md
 local.properties
