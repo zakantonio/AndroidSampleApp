@@ -3,7 +3,7 @@ package it.zakantonio.androidsampleapp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import it.zakantonio.androidsampleapp.models.Cards
+import it.zakantonio.androidsampleapp.models.Card
 
 /**
  * ViewModel per gestire lo stato UI del FirstFragment.
@@ -24,8 +24,8 @@ class MainViewModel : ViewModel() {
 
     // LiveData per la lista di carte
     // In questa lezione gestiamo una lista statica di nomi di carte
-    private val _cards = MutableLiveData<List<Cards>>()
-    val cards: LiveData<List<Cards>> = _cards
+    private val _cards = MutableLiveData<List<Card>>()
+    val cards: LiveData<List<Card>> = _cards
 
     init {
         // Inizializziamo la lista con alcune carte di esempio
@@ -62,10 +62,10 @@ class MainViewModel : ViewModel() {
      */
     private fun loadCards() {
         val cardList = listOf(
-            Cards("Asso di Quadri", R.drawable.quadri),
-            Cards("Asso di Cuori", R.drawable.cuori),
-            Cards("Asso di Fiori", R.drawable.fiori),
-            Cards("Asso di Picche", R.drawable.picche),
+            Card("Asso di Quadri", R.drawable.quadri),
+            Card("Asso di Cuori", R.drawable.cuori),
+            Card("Asso di Fiori", R.drawable.fiori),
+            Card("Asso di Picche", R.drawable.picche),
 
         )
         _cards.value = cardList

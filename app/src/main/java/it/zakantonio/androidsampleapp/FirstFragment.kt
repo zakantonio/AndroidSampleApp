@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import it.zakantonio.androidsampleapp.core.BaseFragment
@@ -76,8 +77,17 @@ class FirstFragment : BaseFragment() {
      * - StaggeredGridLayoutManager: griglia con altezze variabili
      */
     private fun setupRecyclerView() {
-        // Creiamo l'adapter
-        cardAdapter = CardAdapter()
+        // Creiamo l'adapter con il click listener per navigare al dettaglio
+        cardAdapter = CardAdapter(onCardClick = { card ->
+            // Passiamo i dati della carta come argomenti al dialog standard di dettaglio
+            val dialog = AlertDialog.Builder(requireContext())
+                .setTitle(card.text)
+                .setMessage("Dettagli della carta: ${card.text}")
+                .setPositiveButton("OK", null)
+                .create()
+            dialog.show()
+
+        })
 
         // Configuriamo la RecyclerView
         binding.recyclerViewCards.apply {
