@@ -2,8 +2,10 @@ package it.zakantonio.androidsampleapp
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import it.zakantonio.androidsampleapp.databinding.ItemCardSimpleBinding
+import it.zakantonio.androidsampleapp.models.Cards
 
 /**
  * Adapter per la RecyclerView che mostra una lista di carte.
@@ -16,7 +18,7 @@ import it.zakantonio.androidsampleapp.databinding.ItemCardSimpleBinding
  * @param cards Lista di stringhe contenente i nomi delle carte da mostrare
  */
 class CardAdapter(
-    private var cards: List<String> = emptyList()
+    private var cards: List<Cards> = emptyList()
 ) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
     /**
@@ -34,10 +36,11 @@ class CardAdapter(
         /**
          * Collega i dati di una carta alle view dell'item.
          *
-         * @param cardName nome della carta da mostrare
+         * @param card nome della carta da mostrare
          */
-        fun bind(cardName: String) {
-            binding.textViewCardName.text = cardName
+        fun bind(card: Cards) {
+            binding.textViewCardName.text = card.text
+            binding.imageViewCard.setImageResource(card.image)
         }
     }
 
@@ -77,7 +80,7 @@ class CardAdapter(
      *
      * @param newCards nuova lista di carte da mostrare
      */
-    fun updateCards(newCards: List<String>) {
+    fun updateCards(newCards: List<Cards>) {
         cards = newCards
         // Notifichiamo che i dati sono cambiati, così RecyclerView si aggiorna
         notifyDataSetChanged()
