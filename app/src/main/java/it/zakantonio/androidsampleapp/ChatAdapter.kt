@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import it.zakantonio.androidsampleapp.databinding.ItemErrSystemBinding
 import it.zakantonio.androidsampleapp.databinding.ItemMessageBotBinding
 import it.zakantonio.androidsampleapp.databinding.ItemMessageUserBinding
 import it.zakantonio.androidsampleapp.model.Message
@@ -18,6 +19,7 @@ class ChatAdapter(private val messaggi: List<Message>) : RecyclerView.Adapter<Re
     companion object {
         const val TIPO_UTENTE = 0
         const val TIPO_BOT = 1
+        const val TIPO_ERR_SYSTEM = 2
     }
 
     // ViewHolder per i messaggi dell'utente
@@ -30,12 +32,20 @@ class ChatAdapter(private val messaggi: List<Message>) : RecyclerView.Adapter<Re
         val testoMessaggio: TextView = binding.testoMessaggio
     }
 
+    class ErrSystemViewHolder(val binding: ItemErrSystemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(message: Message) {
+            binding.testoMessaggio.text = message.testo
+        }
+    }
+
     // Restituisce il tipo di item in base alla posizione.
     // La RecyclerView usa questo valore per decidere quale layout gonfiare in onCreateViewHolder.
     override fun getItemViewType(position: Int): Int {
         return when (messaggi[position].tipo) {
             TipoMessaggio.UTENTE -> TIPO_UTENTE
             TipoMessaggio.BOT -> TIPO_BOT
+            TipoMessaggio.ERR_SYSTEM -> TIPO_ERR_SYSTEM
         }
     }
 
@@ -47,9 +57,13 @@ class ChatAdapter(private val messaggi: List<Message>) : RecyclerView.Adapter<Re
                 val binding = ItemMessageUserBinding.inflate(inflater, parent, false)
                 UtenteViewHolder(binding)
             }
-            else -> {
+            TIPO_BOT -> {
                 val binding = ItemMessageBotBinding.inflate(inflater, parent, false)
                 BotViewHolder(binding)
+            }
+            else -> {
+                val binding = ItemErrSystemBinding.inflate(inflater, parent, false)
+                ErrSystemViewHolder(binding)
             }
         }
     }
@@ -60,6 +74,7 @@ class ChatAdapter(private val messaggi: List<Message>) : RecyclerView.Adapter<Re
         when (holder) {
             is UtenteViewHolder -> holder.testoMessaggio.text = messaggio.testo
             is BotViewHolder -> holder.testoMessaggio.text = messaggio.testo
+            is ErrSystemViewHolder -> holder.bind(messaggio)
         }
     }
 

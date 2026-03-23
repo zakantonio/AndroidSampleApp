@@ -10,5 +10,6 @@ data class Message(
 // Enum che distingue i due mittenti possibili
 enum class TipoMessaggio {
     UTENTE,
-    BOT
+    BOT,
+    ERR_SYSTEM
 }

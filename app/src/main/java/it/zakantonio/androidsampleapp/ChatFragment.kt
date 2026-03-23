@@ -1,6 +1,7 @@
 package it.zakantonio.androidsampleapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,7 @@ class ChatFragment : BaseFragment() {
         // Osserva la lista messaggi nel ViewModel.
         // Ogni volta che la lista cambia, l'adapter viene aggiornato con i nuovi dati.
         viewModel.messaggi.observe(viewLifecycleOwner) { messaggi ->
+            Log.d("ChatFragment", "Messaggi osservati: $messaggi")
             binding.recyclerMessaggi.adapter = ChatAdapter(messaggi)
             // Scrolla sempre all'ultimo messaggio quando la lista si aggiorna
             if (messaggi.isNotEmpty()) {

@@ -28,7 +28,8 @@ class MainViewModel : ViewModel() {
                 Message("Qual è la capitale della Francia?", TipoMessaggio.UTENTE),
                 Message("La capitale della Francia è Parigi.", TipoMessaggio.BOT),
                 Message("Grazie mille!", TipoMessaggio.UTENTE),
-                Message("Prego! Hai altre domande?", TipoMessaggio.BOT)
+                Message("Prego! Hai altre domande?", TipoMessaggio.BOT),
+                Message("Errore di sistema", TipoMessaggio.ERR_SYSTEM)
             )
         )
         // Pubblica la lista iniziale
