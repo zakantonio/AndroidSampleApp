@@ -19,6 +19,7 @@ class CharacterAdapter(
             with(binding) {
                 textNome.text = personaggio.name
                 textRazza.text = personaggio.race
+                textAffiliazione.text = personaggio.affiliation
                 // Coil carica l'immagine in modo asincrono dall'URL
                 imagePersonaggio.load(personaggio.image)
             }
