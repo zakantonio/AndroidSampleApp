@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import it.zakantonio.androidsampleapp.core.BaseFragment
 import it.zakantonio.androidsampleapp.databinding.FragmentCharacterDetailBinding
 import it.zakantonio.androidsampleapp.model.Character
+import coil.load
 
 // Fragment che mostra il dettaglio di un personaggio Dragon Ball.
 // Riceve l'ID del personaggio tramite arguments e carica i dati dal ViewModel.
@@ -65,6 +66,12 @@ class CharacterDetailFragment : BaseFragment() {
             (activity as AppCompatActivity).supportActionBar?.title = null
             binding.textNome.text = null
             binding.textDescrizione.text = null
+            binding.textRazza.text= null
+            binding.textGender.text=null
+            binding.textAffiliazione.text = null
+            binding.textMinKi.text = null
+            binding.textMaxKi.text = null
+            binding.imagePersonaggio.setImageDrawable(null)
             return
         }
 
@@ -72,6 +79,12 @@ class CharacterDetailFragment : BaseFragment() {
         (activity as AppCompatActivity).supportActionBar?.title = personaggio.name
         binding.textNome.text = personaggio.name
         binding.textDescrizione.text = personaggio.description
+        binding.textRazza.text = personaggio.race
+        binding.textGender.text = personaggio.gender
+        binding.textAffiliazione.text = personaggio.affiliation
+        binding.textMinKi.text = personaggio.ki
+        binding.textMaxKi.text = personaggio.maxKi
+        binding.imagePersonaggio.load(personaggio.image)
     }
 
 

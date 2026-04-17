@@ -22,7 +22,46 @@
                 android:textSize="26sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="16dp" />
-
+            <!-- razza del personaggio -->
+            <TextView
+                android:id="@+id/text_razza"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:lineSpacingMultiplier="1.5"
+                android:layout_marginBottom="16dp" />
+            <!-- gender del personaggio -->
+            <TextView
+                android:id="@+id/text_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:lineSpacingMultiplier="1.5"
+                android:layout_marginBottom="16dp" />
+            <!-- affiliation del personaggio -->
+            <TextView
+                android:id="@+id/text_affiliazione"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:lineSpacingMultiplier="1.5"
+                android:layout_marginBottom="16dp" />
+            <!-- minKi del personaggio -->
+            <TextView
+                android:id="@+id/text_minKi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:lineSpacingMultiplier="1.5"
+                android:layout_marginBottom="16dp" />
+            <!-- maxKi del personaggio -->
+            <TextView
+                android:id="@+id/text_maxKi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:lineSpacingMultiplier="1.5"
+                android:layout_marginBottom="16dp" />
             <!-- Descrizione del personaggio -->
             <TextView
                 android:id="@+id/text_descrizione"
@@ -30,6 +69,13 @@
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
                 android:lineSpacingMultiplier="1.5" />
+            <!-- Descrizione del personaggio -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/image_personaggio"/>
+
+
 
         </LinearLayout>
     </ScrollView>
