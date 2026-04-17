@@ -49,6 +49,8 @@ class CharacterListFragment : BaseFragment() {
         binding.recyclerPersonaggi.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerPersonaggi.adapter = adapter
 
+
+
         // Osserva la lista: salva quella completa e aggiorna l'adapter
         viewModel.personaggi.observe(viewLifecycleOwner) { lista ->
             adapter.submitList(lista)
@@ -66,6 +68,16 @@ class CharacterListFragment : BaseFragment() {
                 personaggio.name.lowercase().contains(testoCercato)
             }
             adapter.submitList(listaFiltrata)
+        }
+
+        // Bottone Saiyan
+        binding.tastoSayan.setOnClickListener {
+            viewModel.caricaPersonaggiPerRazza("Saiyan")
+        }
+
+        // Bottone Tutti
+        binding.tastoTutti.setOnClickListener {
+            viewModel.caricaPersonaggi()
         }
 
         // Avvia il caricamento della lista dall'API
