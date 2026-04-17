@@ -72,6 +72,7 @@ class CharacterDetailFragment : BaseFragment() {
             binding.textMinKi.text = null
             binding.textMaxKi.text = null
             binding.imagePersonaggio.setImageDrawable(null)
+
             return
         }
 
