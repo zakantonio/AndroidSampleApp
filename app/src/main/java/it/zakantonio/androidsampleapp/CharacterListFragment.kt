@@ -1,6 +1,7 @@
 package it.zakantonio.androidsampleapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,10 @@ class CharacterListFragment : BaseFragment() {
 
         binding.recyclerPersonaggi.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerPersonaggi.adapter = adapter
+        binding.tastoSayan.setOnClickListener {
+            Log.d("TEST", "click")
+            viewModel.caricaPersonaggiPerRazza("Saiyan")
+        }
 
         // Osserva la lista: ogni volta che cambia, aggiorna l'adapter
         viewModel.personaggi.observe(viewLifecycleOwner) { lista ->

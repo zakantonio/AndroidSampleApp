@@ -1,5 +1,6 @@
 package it.zakantonio.androidsampleapp
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -51,6 +52,25 @@ class MainViewModel : ViewModel() {
                 _errore.value = e.message
             } finally {
                 // finally viene eseguito sempre, sia in caso di successo che di errore
+                _caricamento.value = false
+            }
+        }
+    }
+
+    // carica personaggi per razza
+    fun caricaPersonaggiPerRazza(razza: String) {
+        viewModelScope.launch {
+            _caricamento.value = true
+            try {
+                val risposta = withContext(Dispatchers.IO) {
+                    ApiClient.service.getCharactersByRace( razza)
+                }
+                Log.d("TEST", risposta.toString())
+                _personaggi.value = risposta
+            } catch (e: Exception) {
+                _errore.value = e.message
+            } finally {
+
                 _caricamento.value = false
             }
         }

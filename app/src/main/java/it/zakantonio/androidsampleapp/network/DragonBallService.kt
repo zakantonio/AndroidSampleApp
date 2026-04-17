@@ -14,7 +14,7 @@ interface DragonBallService {
 
     // Lista di personaggi filtrata per razza
     @GET("characters?race={race}")
-    suspend fun getCharactersByRace(@Path("race") id: Int): List<Character>
+    suspend fun getCharactersByRace(@Path("race") race: String): List<Character>
 
     // Dettaglio di un singolo personaggio per ID
     @GET("characters/{id}")
