@@ -3,6 +3,7 @@ package it.zakantonio.androidsampleapp.network
 import it.zakantonio.androidsampleapp.model.Character
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 // Interfaccia Retrofit che dichiara gli endpoint della DragonBall API.
 // Retrofit genera automaticamente l'implementazione a runtime.
@@ -13,8 +14,8 @@ interface DragonBallService {
     suspend fun getCharacters(): CharactersResponse
 
     // Lista di personaggi filtrata per razza
-    @GET("characters?race={race}")
-    suspend fun getCharactersByRace(@Path("race") race: String): List<Character>
+    @GET("characters")
+    suspend fun getCharactersByRace(@Query("race") race: String): List<Character>
 
     // Dettaglio di un singolo personaggio per ID
     @GET("characters/{id}")

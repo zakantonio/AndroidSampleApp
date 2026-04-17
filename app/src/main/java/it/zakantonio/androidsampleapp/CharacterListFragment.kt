@@ -1,7 +1,6 @@
 package it.zakantonio.androidsampleapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,12 +48,8 @@ class CharacterListFragment : BaseFragment() {
 
         binding.recyclerPersonaggi.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerPersonaggi.adapter = adapter
-        binding.tastoSayan.setOnClickListener {
-            Log.d("TEST", "click")
-            viewModel.caricaPersonaggiPerRazza("Saiyan")
-        }
 
-        // Osserva la lista: ogni volta che cambia, aggiorna l'adapter
+        // Osserva la lista: salva quella completa e aggiorna l'adapter
         viewModel.personaggi.observe(viewLifecycleOwner) { lista ->
             adapter.submitList(lista)
         }
@@ -62,6 +57,15 @@ class CharacterListFragment : BaseFragment() {
         // Mostra o nasconde la ProgressBar durante il caricamento
         viewModel.caricamento.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
+        // Ricerca locale: filtra mentre l'utente digita
+        binding.campoRicerca.addTextChangedListener { testo ->
+            val testoCercato = testo.toString().lowercase()
+            val listaFiltrata = viewModel.personaggi.value.filter { personaggio ->
+                personaggio.name.lowercase().contains(testoCercato)
+            }
+            adapter.submitList(listaFiltrata)
         }
 
         // Avvia il caricamento della lista dall'API
